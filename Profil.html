@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil de Dolorés Santiago</title>
+    <style>
+        /* Styles globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #6c63ff;
+            margin-bottom: 20px;
+        }
+
+        .profile-card h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .profile-card p {
+            margin: 10px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .profile-card .grade {
+            background: #6c63ff;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .profile-card .button {
+            margin-top: 20px;
+            background: #6c63ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .profile-card .button:hover {
+            background: #5548c8;
+        }
+
+        .random-message {
+            margin-top: 20px;
+            font-style: italic;
+            color: #6c63ff;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .random-message.hidden {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <!-- Image de profil -->
+        <img src="Img/Dolorés.png" alt="Photo de profil de Dolorés Santiago" aria-label="Photo de profil de Dolorés">
+        <!-- Nom -->
+        <h1>Dolorés Santiago</h1>
+        <!-- Informations personnelles -->
+        <p><strong>Lieu de naissance :</strong> Marseille</p>
+        <p><strong>Date de naissance :</strong> 16 décembre 2016</p>
+        <p><strong>Loisir :</strong> Tu aimes bien Stitch</p>
+        <!-- Classe -->
+        <span class="grade">CE2</span>
+        <!-- Message aléatoire -->
+        <div class="random-message hidden" id="randomMessage"></div>
+        <!-- Lien ou action -->
+        <a href="Index.html" class="button">Retour au Menu</a>
+    </div>
+
+    <script>
+        // Liste des messages aléatoires
+        const messages = [
+            "Continue de sourire, la vie est belle !",
+            "Stitch est fier de toi !",
+            "Le CE2, c'est génial !",
+            "Chaque jour est une nouvelle aventure !",
+            "Marseille est une ville magnifique, tout comme toi !",
+            "Dolorés sera la plus belle du monde !",
+            "Stitch te donne du courage !",
+        ];
+
+        // Fonction pour changer le message aléatoire
+        function changeMessage() {
+            const randomMessage = document.getElementById('randomMessage');
+            const randomIndex = Math.floor(Math.random() * messages.length);
+
+            // Ajouter une classe pour l'effet de disparition
+            randomMessage.classList.add('hidden');
+
+            setTimeout(() => {
+                // Changer le message après l'effet de disparition
+                randomMessage.textContent = messages[randomIndex];
+                randomMessage.classList.remove('hidden');
+            }, 300); // Durée correspondant à la transition CSS
+        }
+
+        // Changer le message toutes les 5 secondes
+        setInterval(changeMessage, 5000);
+
+        // Afficher un premier message au chargement
+        changeMessage();
+    </script>
+</body>
+</html>

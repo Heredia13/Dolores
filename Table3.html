@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de Calculs Multiplication x</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2972b6, #002790);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .menu-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #005f73;
+        }
+
+        .correct {
+            background-color: #d4edda;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            text-align: center;
+        }
+
+        #score {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        a.button {
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste de Calculs</h1>
+    <h2>Multiplication x</h2>
+
+    <div id="score">Score: 0</div>
+
+    <ul class="menu-list">
+        <!-- Questions existantes -->
+        <li class="menu-item">
+            1 x 2 = 
+            <input type="number" id="answer1"/>
+            <button class="button" onclick="checkAnswer(1, 2)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            3 x 2 = 
+            <input type="number" id="answer2"/>
+            <button class="button" onclick="checkAnswer(2, 6)">Répondre</button>
+        </li>
+        <!-- Nouvelles questions -->
+        <li class="menu-item">
+            2 x 8 = 
+            <input type="number" id="answer21"/>
+            <button class="button" onclick="checkAnswer(21, 16)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            5 x 5 = 
+            <input type="number" id="answer22"/>
+            <button class="button" onclick="checkAnswer(22, 25)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            6 x 2 = 
+            <input type="number" id="answer23"/>
+            <button class="button" onclick="checkAnswer(23, 12)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            3 x 6 = 
+            <input type="number" id="answer24"/>
+            <button class="button" onclick="checkAnswer(24, 18)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            4 x 4 =
+            <input type="number" id="answer25"/>
+            <button class="button" onclick="checkAnswer(25, 16)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            7 x 1 =
+            <input type="number" id="answer26"/>
+            <button class="button" onclick="checkAnswer(26, 7)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            9 x 2 =
+            <input type="number" id="answer27"/>
+            <button class="button" onclick="checkAnswer(27, 18)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            3 x 9 =
+            <input type="number" id="answer28"/>
+            <button class="button" onclick="checkAnswer(28, 27)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            10 x 2 =
+            <input type="number" id="answer29"/>
+            <button class="button" onclick="checkAnswer(29, 20)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            8 x 2 =
+            <input type="number" id="answer30"/>
+            <button class="button" onclick="checkAnswer(30, 16)">Répondre</button>
+        </li>
+    </ul>
+    
+    <a href="Menu.html" class="button">Retour</a>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(questionNumber, correctAnswer) {
+            const input = document.getElementById(`answer${questionNumber}`);
+            const value = parseInt(input.value, 10);
+            const item = input.parentElement;
+
+            if (value === correctAnswer) {
+                item.classList.add('correct');
+                item.classList.remove('incorrect');
+                if (!item.classList.contains('answered')) {
+                    score++;
+                    item.classList.add('answered');
+                    updateScore();
+                }
+            } else {
+                item.classList.add('incorrect');
+                item.classList.remove('correct');
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Score: ${score}`;
+        }
+    </script>
+</body>
+</html>

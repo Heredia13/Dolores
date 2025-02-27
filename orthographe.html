@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre l'orthographe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question {
+            background: #fff;
+            color: #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .feedback {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005BB5;
+        }
+        button.reset {
+            background-color: #f44336;
+        }
+        button.reset:hover {
+            background-color: #d32f2f;
+        }
+        button.return {
+            background-color: #4CAF50;
+        }
+        button.return:hover {
+            background-color: #388E3C;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .hint {
+            color: #555;
+            font-style: italic;
+            display: none;
+        }
+        #score-container {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercices d'orthographe</h1>
+    
+    <div id="questions-container"></div>
+
+    <div id="score-container">
+        <p>Score : <span id="score">0</span></p>
+        <button class="reset" onclick="resetExercise()">Réinitialiser l'exercice</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <button class="return" onclick="goBack()">Retour</button>
+    </div>
+
+    <script>
+        // Tableau des questions avec indices
+        const questions = [
+            { text: "Il (avoir) un chat noir.", answer: "a", hint: "Conjugaison du verbe 'avoir' à la 3e personne du singulier." },
+            { text: "Nous (être) contents de vous voir.", answer: "sommes", hint: "Conjugaison du verbe 'être' à la 1ère personne du pluriel." },
+            { text: "Elle (manger) une pomme.", answer: "mange", hint: "Conjugaison du verbe 'manger' à la 3e personne du singulier." },
+            { text: "Vous (aller) au marché.", answer: "allez", hint: "Conjugaison du verbe 'aller' à la 2e personne du pluriel." },
+            { text: "Ils (finir) leurs devoirs.", answer: "finissent", hint: "Conjugaison du verbe 'finir' à la 3e personne du pluriel." },
+            { text: "Je (vouloir) une glace.", answer: "veux", hint: "Conjugaison du verbe 'vouloir' à la 1ère personne du singulier." },
+            { text: "Tu (pouvoir) venir ce soir.", answer: "peux", hint: "Conjugaison du verbe 'pouvoir' à la 2e personne du singulier." },
+            { text: "Nous (avoir) une belle maison.", answer: "avons", hint: "Conjugaison du verbe 'avoir' à la 1ère personne du pluriel." },
+            { text: "Elles (faire) du sport.", answer: "font", hint: "Conjugaison du verbe 'faire' à la 3e personne du pluriel." },
+            { text: "Il (dire) la vérité.", answer: "dit", hint: "Conjugaison du verbe 'dire' à la 3e personne du singulier." },
+        ];
+
+        let score = 0;
+        const container = document.getElementById("questions-container");
+
+        // Génération dynamique des questions
+        function generateQuestions() {
+            container.innerHTML = "";
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `
+                    <p>Complétez la phrase : <em>${q.text}</em></p>
+                    <input type="text" id="answer${index}" placeholder="Votre réponse ici">
+                    <button onclick="checkAnswer(${index})">Vérifier</button>
+                    <button onclick="showHint(${index})">Afficher un indice</button>
+                    <p id="feedback${index}" class="feedback"></p>
+                    <p id="hint${index}" class="hint">${q.hint}</p>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        generateQuestions();
+
+        // Fonction de vérification des réponses
+        function checkAnswer(index) {
+            const userAnswer = document.getElementById(`answer${index}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback${index}`);
+            const correctAnswer = questions[index].answer.toLowerCase();
+
+            if (feedback.textContent) return;
+
+            if (userAnswer === correctAnswer) {
+                score++;
+                document.getElementById("score").textContent = score;
+                feedback.textContent = "Bonne réponse !";
+                feedback.className = "feedback correct";
+            } else {
+                feedback.textContent = `Incorrect. La bonne réponse est '${correctAnswer}'.`;
+                feedback.className = "feedback incorrect";
+            }
+        }
+
+        // Afficher les indices
+        function showHint(index) {
+            const hint = document.getElementById(`hint${index}`);
+            hint.style.display = "block";
+        }
+
+        // Réinitialiser l'exercice
+        function resetExercise() {
+            score = 0;
+            document.getElementById("score").textContent = score;
+            generateQuestions();
+        }
+
+        // Retour à la page précédente
+        function goBack() {
+            window.location.href = "Menu.html";
+        }
+    </script>
+</body>
+</html>

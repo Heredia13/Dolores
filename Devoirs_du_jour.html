@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devoirs de la semaine</title>
+    <style>
+        /* Styles globaux */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #0d47a1;
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h5 {
+            color: #757575;
+            font-size: 1em;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        ul {
+            width: 90%;
+            max-width: 800px;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+        }
+
+        li {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Initialement invisible */
+            transform: translateY(20px); /* Initialement déplacé vers le bas */
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        /* Ajout de délais progressifs pour l'animation */
+        li:nth-child(1) { animation-delay: 0.2s; }
+        li:nth-child(2) { animation-delay: 0.4s; }
+        li:nth-child(3) { animation-delay: 0.6s; }
+        li:nth-child(4) { animation-delay: 0.8s; }
+        li:nth-child(5) { animation-delay: 1s; }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        li p {
+            margin: 5px 0;
+            color: #424242;
+        }
+
+        li img {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .images-container img {
+            margin: 10px 0;
+        }
+
+        .day-title {
+            font-size: 1.5em;
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #0d47a1;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin: 20px auto;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Devoirs de la semaine</h1>
+    <ul>
+        <li>
+            <div class="day-title">Lundi</div>
+            <p><strong>Sortie :</strong> Sortie du lundi 3 février 2025 de 11h00 à 17h15.</p>
+            <p><strong>Grammaire :</strong> Apprendre la leçon n°7.</p>
+            <img src="Devoirs/lundi.png" alt="Exemple de devoir pour lundi">
+        </li>
+        <li>
+            <div class="day-title">Mardi</div>
+            <p><strong>Conjugaison :</strong> Revoir les leçons 13 et 14 et apprendre la leçon 15.</p>
+            <div class="images-container">
+                <img src="Devoirs/Mardi.png" alt="Devoir de conjugaison mardi">
+                <img src="Devoirs/Mardi1.png" alt="Complément de devoir mardi 1">
+                <img src="Devoirs/Mardi2.png" alt="Complément de devoir mardi 2">
+            </div>
+        </li>
+        <li>
+            <div class="day-title">Jeudi</div>
+            <p><strong>Histoire :</strong> Évaluation sur l'Antiquité.</p>
+            <p><strong>Contrat de révision :</strong></p>
+            <ul>
+                <li>Savoir quand commence l’Antiquité.</li>
+                <li>Connaître Jules César et Vercingétorix.</li>
+                <li>Savoir qui a gagné la bataille d'Alésia.</li>
+                <li>Connaître deux outils et armes gauloises.</li>
+                <li>Connaître les définitions : temple, arènes, aqueduc, voie romaine.</li>
+            </ul>
+        </li>
+        <li>
+            <div class="day-title">Vendredi</div>
+            <p><strong>Orthographe :</strong> Apprendre la leçon n°22.</p>
+            <p><strong>Mathématiques :</strong> Poser la soustraction sur le cahier : 324 - 146.</p>
+            <img src="Devoirs/Vandredi.png" alt="Complément de devoir vendredi">
+        </li>
+    </ul>
+    <h5>Cette page sera actualisée chaque samedi.</h5>
+    <button onclick="location.href='index.html';">Retour</button>
+</body>
+</html>

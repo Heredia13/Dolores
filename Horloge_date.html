@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date et Heure Actuelles</title>
+    <style>
+        /* Style global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #6a11cb, #2575fc);
+            color: #fff;
+        }
+
+        /* Conteneur principal */
+        .container {
+            text-align: center;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .date-display, .time-display {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .time-display {
+            font-size: 1.8rem;
+            color: #444;
+            font-weight: bold;
+        }
+
+        /* Bouton */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1rem;
+            color: #fff;
+            background: #4CAF50;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Date et Heure Actuelles</h1>
+        <p class="date-display" id="date"></p>
+        <p class="time-display" id="time"></p>
+        <button class="btn" onclick="history.back()">Retour</button>
+    </div>
+
+    <script>
+        // Fonction pour afficher la date
+        function displayDateTime() {
+            const dateElement = document.getElementById('date');
+            const timeElement = document.getElementById('time');
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const now = new Date();
+            
+            // Date formatée
+            dateElement.textContent = now.toLocaleDateString('fr-FR', options);
+            
+            // Heure formatée (HH:mm:ss)
+            const time = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            timeElement.textContent = time;
+        }
+
+        // Mise à jour toutes les secondes
+        setInterval(displayDateTime, 1000);
+
+        // Initialisation
+        displayDateTime();
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de Calculs Soustraction -</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2972b6, #002790);
+            color: #333;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        #score {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .menu-list {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #005f73;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .correct {
+            background-color: #d4edda;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2972b6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste de Calculs - Soustraction</h1>
+
+    <div id="score">Score : 0</div>
+
+    <ul class="menu-list">
+        <!-- Questions de 1 à 30 -->
+        <!-- Questions déjà existantes -->
+        <li class="menu-item">
+            5 - 2 =
+            <input type="number" id="answer1"/>
+            <button class="button" onclick="checkAnswer(1, 3)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            8 - 4 =
+            <input type="number" id="answer2"/>
+            <button class="button" onclick="checkAnswer(2, 4)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            9 - 6 =
+            <input type="number" id="answer3"/>
+            <button class="button" onclick="checkAnswer(3, 3)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            7 - 5 =
+            <input type="number" id="answer4"/>
+            <button class="button" onclick="checkAnswer(4, 2)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            10 - 7 =
+            <input type="number" id="answer5"/>
+            <button class="button" onclick="checkAnswer(5, 3)">Répondre</button>
+        </li>
+        <!-- Nouvelles questions -->
+        <li class="menu-item">
+            18 - 8 =
+            <input type="number" id="answer21"/>
+            <button class="button" onclick="checkAnswer(21, 10)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            20 - 11 =
+            <input type="number" id="answer22"/>
+            <button class="button" onclick="checkAnswer(22, 9)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            25 - 15 =
+            <input type="number" id="answer23"/>
+            <button class="button" onclick="checkAnswer(23, 10)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            16 - 5 =
+            <input type="number" id="answer24"/>
+            <button class="button" onclick="checkAnswer(24, 11)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            22 - 10 =
+            <input type="number" id="answer25"/>
+            <button class="button" onclick="checkAnswer(25, 12)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            30 - 14 =
+            <input type="number" id="answer26"/>
+            <button class="button" onclick="checkAnswer(26, 16)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            19 - 9 =
+            <input type="number" id="answer27"/>
+            <button class="button" onclick="checkAnswer(27, 10)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            24 - 8 =
+            <input type="number" id="answer28"/>
+            <button class="button" onclick="checkAnswer(28, 16)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            17 - 7 =
+            <input type="number" id="answer29"/>
+            <button class="button" onclick="checkAnswer(29, 10)">Répondre</button>
+        </li>
+        <li class="menu-item">
+            12 - 6 =
+            <input type="number" id="answer30"/>
+            <button class="button" onclick="checkAnswer(30, 6)">Répondre</button>
+        </li>
+    </ul>
+
+    <a href="Menu.html" class="back-button">Retour au Menu</a>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(questionNumber, correctAnswer) {
+            const input = document.getElementById(`answer${questionNumber}`);
+            const value = parseInt(input.value, 10);
+            const item = input.parentElement;
+
+            if (value === correctAnswer) {
+                item.classList.add('correct');
+                item.classList.remove('incorrect');
+                if (!item.classList.contains('answered')) {
+                    score++;
+                    item.classList.add('answered');
+                    updateScore();
+                }
+            } else {
+                item.classList.add('incorrect');
+                item.classList.remove('correct');
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Score : ${score}`;
+        }
+    </script>
+</body>
+</html>

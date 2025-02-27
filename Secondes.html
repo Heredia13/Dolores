@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolores - connexion</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            background-color: #f0f0f0; /* Couleur d'arrière-plan */
+            color: #333; /* Couleur du texte */
+        }
+
+        p {
+            background-color: #fff; /* Couleur de fond du texte */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        // Fonction pour rediriger vers index.html après 5 secondes
+        function redirect() {
+            window.location.href = 'Accueil.html';
+        }
+
+        // Démarrer le timer
+        setTimeout(redirect, 5000);
+    </script>
+</head>
+<body>
+    <div>
+        <p>Connexion en cours veuillez patienter <span id="timer">5</span> secondes...</p>
+    </div>
+
+    <script>
+        // Met à jour le timer chaque seconde
+        let timeLeft = 5;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

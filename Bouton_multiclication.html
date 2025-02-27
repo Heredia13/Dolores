@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutons de 1 à 10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .return {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .return:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choisis un nombre</h1>
+        <div class="button-container" id="buttonContainer"></div>
+        <div class="result" id="result">Clique sur un bouton pour ouvrir le lien correspondant.</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <button class="return" onclick="goBack()">Retour</button>
+    </div>
+
+<script>
+    const buttonContainer = document.getElementById("buttonContainer");
+    const result = document.getElementById("result");
+
+    // Liste des liens pour chaque bouton
+    const links = [
+        "Tableau/multiplication_x1.html",
+        "Tableau/Multiplication_x2.html",
+        "Tableau/multiplication_x3.html",
+        "https://www.instagram.com",
+        "https://www.linkedin.com",
+        "https://www.github.com",
+        "https://www.wikipedia.org",
+        "https://www.youtube.com",
+        "https://www.amazon.fr",
+        "https://www.apple.com"
+    ];
+
+    // Générer les boutons de 1 à 10 avec des liens
+    for (let i = 1; i <= 10; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        button.classList.add("button");
+
+        // Ajouter un événement de clic pour rediriger vers le lien
+        button.addEventListener("click", () => {
+            window.location.href = links[i - 1]; // Utilise i - 1 pour accéder au bon lien
+        });
+
+        buttonContainer.appendChild(button);
+    }
+
+    // Fonction pour le bouton retour
+    function goBack() {
+        window.location.href = "menu.html"; // Redirige vers menu.html
+    }
+</script>
+
+    </script>
+</body>
+</html>

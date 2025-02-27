@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Électronique</title>
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+           background: linear-gradient(135deg, #6a11cb, #2575fc);
+            /* Dégradé de fond */
+            margin: 0;
+        }
+
+        .signature-container {
+            background-color: #f9f9f9; /* Fond légèrement coloré */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #007bff; /* Bordure colorée */
+        }
+
+        canvas {
+            border: 2px solid #007bff; /* Bordure colorée */
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 200px; /* Hauteur fixe pour le canvas */
+            touch-action: none; /* Désactiver le défilement tactile */
+            background-color: #fff; /* Fond blanc pour le canvas */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Espace entre les boutons */
+        }
+
+        button {
+            padding: 15px 25px; /* Boutons plus grands pour le mobile */
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(135deg, #007bff, #0056b3); /* Dégradé pour les boutons */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex: 1; /* Répartir l'espace entre les boutons */
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0056b3, #003f7f); /* Dégradé au survol */
+        }
+
+        #clear-btn {
+            background: linear-gradient(135deg, #dc3545, #c82333); /* Dégradé rouge */
+        }
+
+        #clear-btn:hover {
+            background: linear-gradient(135deg, #c82333, #a71d2a); /* Dégradé rouge foncé au survol */
+        }
+    </style>
+</head>
+<body>
+    <div class="signature-container">
+        <h1 style="color: #007bff;">Signature Électronique</h1> <!-- Titre coloré -->
+        <canvas id="signature-pad"></canvas>
+        <div class="button-container">
+            <button id="clear-btn">Effacer</button>
+            <button id="confirm-btn">Confirmer</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript
+        const canvas = document.getElementById('signature-pad');
+        const ctx = canvas.getContext('2d');
+        const clearBtn = document.getElementById('clear-btn');
+        const confirmBtn = document.getElementById('confirm-btn');
+
+        // Ajuster la taille du canvas
+        function resizeCanvas() {
+            const ratio = window.devicePixelRatio || 1;
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            ctx.scale(ratio, ratio);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Initialiser la taille du canvas
+
+        let drawing = false;
+
+        // Démarrer le dessin
+        function startDrawing(e) {
+            drawing = true;
+            draw(e);
+        }
+
+        // Arrêter le dessin
+        function stopDrawing() {
+            drawing = false;
+            ctx.beginPath();
+        }
+
+        // Dessiner sur le canvas
+        function draw(e) {
+            if (!drawing) return;
+
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#007bff'; /* Couleur de la signature */
+
+            // Coordonnées de la souris ou du toucher
+            const x = (e.clientX || e.touches[0].clientX) - canvas.offsetLeft;
+            const y = (e.clientY || e.touches[0].clientY) - canvas.offsetTop;
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        // Effacer le canvas
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Vérifier si la signature est vide
+        function isCanvasEmpty() {
+            const blank = document.createElement('canvas');
+            blank.width = canvas.width;
+            blank.height = canvas.height;
+            return canvas.toDataURL() === blank.toDataURL();
+        }
+
+        // Événements pour la souris
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mousemove', draw);
+
+        // Événements pour les écrans tactiles
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrawing(e.touches[0]);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            draw(e.touches[0]);
+        });
+
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // Boutons
+        clearBtn.addEventListener('click', clearCanvas);
+
+        confirmBtn.addEventListener('click', () => {
+            if (isCanvasEmpty()) {
+                alert("Veuillez signer avant de confirmer.");
+            } else {
+                window.location.href = "Secondes.html"; // Redirection
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exercices d'addition interactifs pour améliorer les compétences en calcul mental.">
+    <title>Liste de Calculs - Addition +</title>
+    <style>
+        /* Réinitialisation globale */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style général du corps */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2972b6, #002790);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Titre principal */
+        h1 {
+            text-align: center;
+            color: #2972b6;
+            margin-bottom: 20px;
+        }
+
+        /* Timer et score */
+        #timer, #score {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        #timer {
+            font-weight: bold;
+            color: #2972b6;
+        }
+
+        /* Liste des exercices */
+        .menu-list {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+        }
+
+        /* Style des items */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Boutons */
+        .button {
+            background-color: #008CBA;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #005f73;
+            transform: translateY(-2px);
+        }
+
+        .button:active {
+            background-color: #003f4d;
+            transform: translateY(2px);
+        }
+
+        /* Input des réponses */
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        /* Style des réponses correctes et incorrectes */
+        .correct {
+            background-color: #d4edda;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+        }
+
+        /* Lien retour */
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2972b6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercices d'Addition +</h1>
+
+        <div id="timer">Temps écoulé : 00:00</div>
+        <div id="score">Score : 0</div>
+
+        <ul class="menu-list">
+            <!-- Questions -->
+            <li class="menu-item">
+                <span>3 + 2 = </span>
+                <input type="number" id="answer1" aria-label="Réponse pour 3 + 2" />
+                <button class="button" onclick="checkAnswer(1, 5)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>4 + 4 = </span>
+                <input type="number" id="answer2" aria-label="Réponse pour 4 + 4" />
+                <button class="button" onclick="checkAnswer(2, 8)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>6 + 3 = </span>
+                <input type="number" id="answer3" aria-label="Réponse pour 6 + 3" />
+                <button class="button" onclick="checkAnswer(3, 9)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>7 + 5 = </span>
+                <input type="number" id="answer4" aria-label="Réponse pour 7 + 5" />
+                <button class="button" onclick="checkAnswer(4, 12)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>8 + 1 = </span>
+                <input type="number" id="answer5" aria-label="Réponse pour 8 + 1" />
+                <button class="button" onclick="checkAnswer(5, 9)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>2 + 9 = </span>
+                <input type="number" id="answer6" aria-label="Réponse pour 2 + 9" />
+                <button class="button" onclick="checkAnswer(6, 11)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>3 + 6 = </span>
+                <input type="number" id="answer7" aria-label="Réponse pour 3 + 6" />
+                <button class="button" onclick="checkAnswer(7, 9)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>4 + 7 = </span>
+                <input type="number" id="answer8" aria-label="Réponse pour 4 + 7" />
+                <button class="button" onclick="checkAnswer(8, 11)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>9 + 1 = </span>
+                <input type="number" id="answer9" aria-label="Réponse pour 9 + 1" />
+                <button class="button" onclick="checkAnswer(9, 10)">Répondre</button>
+            </li>
+            <li class="menu-item">
+                <span>5 + 5 = </span>
+                <input type="number" id="answer10" aria-label="Réponse pour 5 + 5" />
+                <button class="button" onclick="checkAnswer(10, 10)">Répondre</button>
+            </li>
+        </ul>
+
+        <a href="Menu.html" class="back-button">Retour au Menu</a>
+    </div>
+
+    <script>
+        let score = 0;
+        let seconds = 0;
+
+        function checkAnswer(questionNumber, correctAnswer) {
+            const input = document.getElementById(`answer${questionNumber}`);
+            const value = parseInt(input.value, 10);
+            const item = input.closest('.menu-item');
+
+            if (value === correctAnswer) {
+                item.classList.add('correct');
+                item.classList.remove('incorrect');
+                if (!item.classList.contains('answered')) {
+                    score++;
+                    item.classList.add('answered');
+                    updateScore();
+                }
+            } else {
+                item.classList.add('incorrect');
+                item.classList.remove('correct');
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Score : ${score}`;
+        }
+
+        function updateTimer() {
+            seconds++;
+            const minutes = Math.floor(seconds / 60);
+            const displaySeconds = seconds % 60;
+            document.getElementById('timer').textContent = 
+                `Temps écoulé : ${String(minutes).padStart(2, '0')}:${String(displaySeconds).padStart(2, '0')}`;
+        }
+
+        window.onload = function() {
+            setInterval(updateTimer, 1000);
+        };
+    </script>
+</body>
+</html>

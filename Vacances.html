@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devoirs pour les vacances</title>
+    <style>
+        /* Styles globaux */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #0d47a1;
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h5 {
+            color: #757575;
+            font-size: 1em;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        ul {
+            width: 90%;
+            max-width: 800px;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+        }
+
+        li {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        li p {
+            margin: 5px 0;
+            color: #424242;
+        }
+
+        .day-title {
+            font-size: 1.5em;
+            color: #0d47a1;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #countdown {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #0d47a1;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin: 20px auto;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Devoirs pour les vacances</h1>
+    <ul>
+        <li>
+            <div class="day-title">Les vacances</div>
+            <p><strong>Période :</strong> Vacances d'hiver</p>
+            <p><strong>Travail à réaliser :</strong></p>
+            <ul>
+                <li>📖 <strong>Français :</strong> Évaluation sur le passé composé et le groupe nominal. Revoir les leçons 5, 7, 13, 14 et 15.</li>
+                <li>➗ <strong>Mathématiques :</strong> Revoir les tables de multiplication et faire la fiche de calculs posés.</li>
+                <li>🌬️ <strong>Sciences :</strong> Évaluation sur l’air. Apprendre la fiche bilan.</li>
+                <li>📚 <strong>Lecture :</strong> Lire régulièrement pendant les vacances (roman, BD, magazine, etc.).</li>
+            </ul>
+            <p>
+                Que tu sois à la montagne, à la mer ou bien au chaud à la maison, je te souhaite de très bonnes vacances et du repos.  
+                Prépare-toi pour cette seconde moitié de CE2 qui nous réserve encore plein de belles surprises et de nouvelles choses à apprendre !  
+            </p>
+           <!--- <img src="Devoirs/lundi.png" alt="Exemple de devoirs"> --->
+        </li>
+    </ul>
+
+    <h2>Prochaines vacances (Zone B)</h2>
+    <ul>
+        <li>🌨️ <strong>Vacances d’hiver :</strong> du <strong>8 février au 24 février 2025</strong></li>
+        <li>🌸 <strong>Vacances de printemps :</strong> du <strong>5 avril au 22 avril 2025</strong></li>
+        <li>☀️ <strong>Vacances d’été :</strong> débutent le <strong>5 juillet 2025</strong></li>
+    </ul>
+
+    <h2>Temps restant avant la fin des vacances :</h2>
+    <div id="countdown">Calcul en cours...</div>
+
+    <h5>Cette page sera affichée pendant les vacances.</h5>
+    
+    <button onclick="location.href='index.html';">Retour</button>
+
+    <script>
+        function countdownTimer(endDate) {
+            let countdownElement = document.getElementById("countdown");
+
+            function updateTimer() {
+                let now = new Date().getTime();
+                let timeLeft = endDate - now;
+
+                if (timeLeft <= 0) {
+                    countdownElement.innerHTML = "Les vacances sont terminées !";
+                    clearInterval(timer);
+                    return;
+                }
+
+                let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days} jours, ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            let timer = setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+
+        // Date de fin des vacances d’hiver (Zone B) : 24 février 2025 à 23h59
+        let vacancesFin = new Date("February 24, 2025 23:59:59").getTime();
+        countdownTimer(vacancesFin);
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Arial" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre l'anglais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            color: #0078D7;
+            margin-bottom: 30px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        .question {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .feedback {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005BB5;
+        }
+        button.reset {
+            background-color: #f44336;
+        }
+        button.reset:hover {
+            background-color: #d32f2f;
+        }
+        button.return {
+            background-color: #4CAF50;
+        }
+        button.return:hover {
+            background-color: #388E3C;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .hint {
+            color: #555;
+            font-style: italic;
+            display: none;
+        }
+        #score-container {
+            font-size: 1.2em;
+        }
+        .score {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Apprendre l'anglais</h1>
+    </header>
+
+    <section id="questions-container"></section>
+
+    <section id="score-container">
+        <p>Score : <span id="score" class="score">0</span></p>
+        <button class="reset" onclick="resetExercise()">Réinitialiser l'exercice</button>
+    </section>
+
+    <section>
+        <button class="return" onclick="goBack()">Retour</button>
+    </section>
+
+    <script>
+        // Tableau des questions avec indices
+        const questions = [
+            { text: "Bonjour", answer: "hello", hint: "C'est une salutation courante en anglais." },
+            { text: "Merci", answer: "thank you", hint: "Deux mots, souvent utilisés pour exprimer de la gratitude." },
+            { text: "Comment ça va ?", answer: "how are you", hint: "Trois mots pour demander le bien-être." },
+            { text: "Oui", answer: "yes", hint: "C'est l'opposé de 'no'." },
+            { text: "Non", answer: "no", hint: "C'est l'opposé de 'yes'." },
+            { text: "S'il vous plaît", answer: "please", hint: "Un mot poli pour demander quelque chose." },
+            { text: "Au revoir", answer: "goodbye", hint: "Un mot utilisé pour prendre congé." },
+            { text: "Excusez-moi", answer: "excuse me", hint: "Deux mots pour attirer l'attention poliment." },
+            { text: "Je ne comprends pas", answer: "i don't understand", hint: "Un mot clé est 'comprendre'." },
+            { text: "Pouvez-vous répéter ?", answer: "can you repeat", hint: "Demande de répéter quelque chose." },
+            { text: "Un", answer: "one", hint: "Le premier chiffre." },
+            { text: "Deux", answer: "two", hint: "Le chiffre après 'one'." },
+            { text: "Trois", answer: "three", hint: "Le chiffre après 'two'." },
+        ];
+
+        let score = 0;
+        const container = document.getElementById("questions-container");
+
+        // Génération dynamique des questions
+        function generateQuestions() {
+            container.innerHTML = "";
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `
+                    <p>Traduisez en anglais : <em>${q.text}</em></p>
+                    <input type="text" id="answer${index}" placeholder="Votre réponse ici">
+                    <button onclick="checkAnswer(${index})">Vérifier</button>
+                    <button onclick="showHint(${index})">Afficher un indice</button>
+                    <p id="feedback${index}" class="feedback"></p>
+                    <p id="hint${index}" class="hint">${q.hint}</p>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        generateQuestions();
+
+        // Vérifier les réponses
+        function checkAnswer(index) {
+            const userAnswer = document.getElementById(`answer${index}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback${index}`);
+            const correctAnswer = questions[index].answer.toLowerCase();
+
+            if (feedback.textContent) return; // Empêche une double vérification
+
+            if (userAnswer === correctAnswer) {
+                score++;
+                document.getElementById("score").textContent = score;
+                feedback.textContent = "Bonne réponse !";
+                feedback.className = "feedback correct";
+            } else {
+                feedback.textContent = `Incorrect. La bonne réponse est '${correctAnswer}'.`;
+                feedback.className = "feedback incorrect";
+            }
+        }
+
+        // Afficher les indices
+        function showHint(index) {
+            const hint = document.getElementById(`hint${index}`);
+            hint.style.display = "block";
+        }
+
+        // Réinitialiser l'exercice
+        function resetExercise() {
+            score = 0;
+            document.getElementById("score").textContent = score;
+            generateQuestions();
+        }
+
+        // Retour à la page précédente
+        function goBack() {
+            window.location.href = "Menu.html";
+        }
+    </script>
+</body>
+</html>

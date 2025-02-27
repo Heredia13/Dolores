@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Destruct</title>
+    <link rel="stylesheet" href="css/Bouton.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="warning">⚠ ATTENTION ⚠</div>
+
+        <div class="base">
+            <button id="activate">ACTIVATE</button>
+        </div>
+
+        <div class="box" id="cover">
+            <span></span><span></span>
+        </div>
+
+        <div class="text">SELF-DESTRUCT</div>
+
+        <div id="panel" class="hidden">
+            <div id="msg">DEVICE SELF-DESTRUCTION</div>
+            <div id="time">9</div>
+            <button id="abort">ABORT</button>
+            <button id="detonate">DETONATE</button>
+        </div>
+
+        <audio id="alarm" preload="auto">
+            <source src="https://josetxu.com/demos/sounds/self-destruct-count.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script src="css/Bouton.js"></script>
+
+</body>
+</html>

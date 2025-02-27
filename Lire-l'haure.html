@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leçon : Lecture de l'heure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #388e3c;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section {
+            background: white;
+            border-left: 5px solid #4caf50;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #4caf50;
+            margin-top: 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .image-container img {
+            max-width: 200px;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #4caf50;
+            color: white;
+            border-top: 5px solid #388e3c;
+        }
+        .button:hover {
+            background-color: #005f73;
+        }
+
+        .logout {
+            background-color: #e74c3c;
+        }
+
+        .logout:hover {
+            background-color: #c0392b;
+        }
+                .button {
+            display: inline-block;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Leçon : Lecture de l'heure</h1>
+        <p>Apprends à lire l'heure avec des horloges et des explications simples !</p>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2>Introduction</h2>
+            <p>Pour lire l'heure sur une horloge ou une montre à aiguilles :</p>
+            <ul>
+                <li><strong>Petite aiguille</strong> : indique les heures.</li>
+                <li><strong>Grande aiguille</strong> : indique les minutes.</li>
+            </ul>
+            <div class="image-container">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9Ijk1IiBzdHlsZT0iZmlsbDojZmZmOyBzdHJva2U6IzMzMzsgc3Ryb2tlLXdpZHRoOjUiIC8+PGxpbmUgeDE9IjEwMCIgeTE9IjEwMCIgeDI9IjEwMCIgeTI9IjU1IiBzdHlsZT0ic3Ryb2tlOiMzMzM7IHN0cm9rZS13aWR0aDoyIiAvPjxsaW5lIHgxPSIxMDAiIHkxPSIxMDAiIHgyPSIxNTAiIHkyPSIxMDAiIHN0eWxlPSJzdHJva2U6IzMzMztzdHJva2Utd2lkdGg6NCIgLz48L3N2Zz4=" alt="Horloge 10h00">
+            </div>
+            <p><strong>Exemple :</strong> Si la petite aiguille pointe sur le 10 et la grande sur le 12, il est <strong>10h00</strong> (dix heures pile).</p>
+        </section>
+
+        <section class="section">
+            <h2>Les heures et les minutes</h2>
+            <ul>
+                <li><strong>60 minutes</strong> = 1 heure. La grande aiguille fait un tour complet.</li>
+                <li><strong>30 minutes</strong> = la moitié d'une heure. On dit "<strong>et demie</strong>".</li>
+                <li><strong>15 minutes</strong> = un quart d'heure. On dit "<strong>et quart</strong>".</li>
+                <li><strong>45 minutes</strong> = trois quarts d'heure. On peut dire "<strong>moins le quart</strong>".</li>
+            </ul>
+            <div class="image-container">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9Ijk1IiBzdHlsZT0iZmlsbDojZmZmOyBzdHJva2U6IzMzMzsgc3Ryb2tlLXdpZHRoOjUiIC8+PGxpbmUgeDE9IjEwMCIgeTE9IjEwMCIgeDI9IjEwMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlOiMzMzM7IHN0cm9rZS13aWR0aDoyIiAvPjxsaW5lIHgxPSIxMDAiIHkxPSIxMDAiIHgyPSIxNTAiIHkyPSIxMDAiIHN0eWxlPSJzdHJva2U6IzMzMztzdHJva2Utd2lkdGg6NCIgLz48L3N2Zz4=" alt="Horloge 10h45">
+            </div>
+            <p><strong>Exemple :</strong> Si la grande aiguille pointe sur le 9, il est <strong>10h45</strong> ou <strong>11 heures moins le quart</strong>.</p>
+        </section>
+    </main>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="Menu.html" class="button logout">Retour</a>
+    </div>
+
+    <footer>
+        <p>Apprendre à lire l'heure est facile et amusant ! 🌟</p>
+    </footer>
+</body>
+</html>

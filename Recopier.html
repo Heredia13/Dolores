@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recopier un Texte (Protégé)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    .text-to-copy {
+      font-size: 18px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      user-select: none; /* Empêche la sélection de texte */
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      resize: none;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #4CAF50;
+    }
+
+    .error {
+      color: #f44336;
+    }
+
+    /* Style du bouton retour */
+    .button-back {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-back:hover {
+      background-color: #0b7dda;
+    }
+
+    .button-back:active {
+      background-color: #1565c0;
+    }
+  </style>
+  <script>
+    // Désactive le clic droit pour empêcher les utilisateurs d'inspecter l'élément
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Recopier le Texte (Protégé)</h1>
+    <p class="text-to-copy">
+      Au fond d’une très sombre forêt se cache la clairière des farfadets. Arriver à elle est un véritable parcours du combattant : il faut passer à travers d’étroits et sinueux chemins, se perdre, se retrouver et se perdre à nouveau, entendre le hurlement du vent dans les branches des arbres dénudés et le mugissement des animaux sauvages ; bref c’est pratiquement impossible.
+    </p>
+    <textarea id="userInput" placeholder="Recopiez le texte ici..."></textarea>
+    <button id="verifyButton">Vérifier</button>
+    <p id="resultMessage" class="result"></p>
+    <a href="Menu.html" class="button-back">Retour au menu</a>
+  </div>
+
+  <script>
+    document.getElementById("verifyButton").addEventListener("click", function() {
+      // Texte d'origine
+      const originalText = "Au fond d’une très sombre forêt se cache la clairière des farfadets. Arriver à elle est un véritable parcours du combattant : il faut passer à travers d’étroits et sinueux chemins, se perdre, se retrouver et se perdre à nouveau, entendre le hurlement du vent dans les branches des arbres dénudés et le mugissement des animaux sauvages ; bref c’est pratiquement impossible.";
+      
+      // Texte saisi par l'utilisateur
+      const userInput = document.getElementById("userInput").value.trim();
+
+      // Élément pour afficher le résultat
+      const resultMessage = document.getElementById("resultMessage");
+
+      // Vérification du texte
+      if (userInput === originalText) {
+        resultMessage.textContent = "Bravo ! Vous avez correctement recopié le texte.";
+        resultMessage.className = "result success";
+      } else {
+        resultMessage.textContent = "Dommage ! Le texte recopié n'est pas exact.";
+        resultMessage.className = "result error";
+      }
+    });
+  </script>
+</body>
+</html>

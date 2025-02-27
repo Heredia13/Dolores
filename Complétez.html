@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complétez par "au" ou "chez"</title>
+  <style>
+    /* Styles généraux */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #007BFF;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    main {
+      margin-top: 80px; /* Pour éviter que le contenu soit caché sous l'en-tête */
+      padding: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px;
+      width: 100px;
+      font-size: 16px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      color: #fff;
+      background-color: #28a745;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- En-tête -->
+  <header>Complétez par "au" ou "chez"</header>
+
+  <!-- Contenu principal -->
+  <main>
+    <!-- Questions -->
+    <div class="question">1. Je vais <input type="text" id="q1" placeholder="au / chez"> supermarché pour acheter du pain.</div>
+    <div class="question">2. Nous irons <input type="text" id="q2" placeholder="au / chez"> médecin cet après-midi.</div>
+    <div class="question">3. Elle a invité ses amis <input type="text" id="q3" placeholder="au / chez"> restaurant pour fêter son anniversaire.</div>
+    <div class="question">4. Mon frère travaille <input type="text" id="q4" placeholder="au / chez"> garage en tant que mécanicien.</div>
+    <div class="question">5. Hier soir, nous sommes allés dîner <input type="text" id="q5" placeholder="au / chez"> un ami.</div>
+    <div class="question">6. Les gens vont <input type="text" id="q6" placeholder="au / chez"> marché pour acheter des légumes.</div>
+    <div class="question">7. Nous devons passer <input type="text" id="q7" placeholder="au / chez"> coiffeur avant la cérémonie de mariage.</div>
+    <div class="question">8. Ils vont passer leurs vacances <input type="text" id="q8" placeholder="au / chez"> camping au bord du lac.</div>
+    <div class="question">9. Je vais <input type="text" id="q9" placeholder="au / chez"> boulanger pour acheter une baguette.</div>
+    <div class="question">10. Nous irons <input type="text" id="q10" placeholder="au / chez"> cinéma ce soir.</div>
+    <div class="question">11. Il travaille <input type="text" id="q11" placeholder="au / chez"> bureau toute la journée.</div>
+    <div class="question">12. Passons <input type="text" id="q12" placeholder="au / chez"> pharmacien avant de rentrer.</div>
+    <div class="question">13. J’aime bien aller <input type="text" id="q13" placeholder="au / chez"> parc pour lire un livre.</div>
+    <div class="question">14. Elle est restée <input type="text" id="q14" placeholder="au / chez"> elle toute la journée.</div>
+    <div class="question">15. Nous devons aller <input type="text" id="q15" placeholder="au / chez"> vétérinaire avec notre chat.</div>
+    <div class="question">16. Je vais <input type="text" id="q16" placeholder="au / chez"> gymnase trois fois par semaine.</div>
+    <div class="question">17. Ils ont déjeuné <input type="text" id="q17" placeholder="au / chez"> leur tante dimanche dernier.</div>
+    <div class="question">18. Nous avons assisté <input type="text" id="q18" placeholder="au / chez"> mariage de nos amis.</div>
+
+    <!-- Bouton de vérification -->
+    <button class="btn" onclick="verifier()">Vérifier les réponses</button>
+
+    <!-- Feedback -->
+    <div class="feedback" id="feedback"></div>
+
+    <!-- Bouton de retour au menu -->
+    <a href="menu.html" class="btn">Retour au menu</a>
+  </main>
+
+  <!-- Pied de page -->
+  <footer>© 2025 - Exercice en HTML et CSS</footer>
+
+  <script>
+    function verifier() {
+      // Réponses correctes
+      const reponses = ["au", "chez", "au", "au", "chez", "au", "chez", "au", 
+                        "chez", "au", "au", "chez", "au", "chez", "chez", 
+                        "au", "chez", "au"];
+
+      // Récupérer les réponses de l'utilisateur
+      const userReponses = [];
+      for (let i = 1; i <= reponses.length; i++) {
+        userReponses.push(document.getElementById(`q${i}`).value.trim().toLowerCase());
+      }
+
+      // Vérification
+      let score = 0;
+      for (let i = 0; i < reponses.length; i++) {
+        if (userReponses[i] === reponses[i]) {
+          score++;
+        }
+      }
+
+      // Afficher le résultat
+      const feedback = document.getElementById("feedback");
+      feedback.textContent = `Vous avez ${score} / ${reponses.length} bonnes réponses.`;
+      feedback.style.color = score === reponses.length ? "green" : "red";
+    }
+  </script>
+
+</body>
+</html>
