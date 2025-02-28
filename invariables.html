@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des mots invariables</title>
+    <style>
+        /* CSS intégré */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .table-container {
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .return-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .return-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des mots invariables à apprendre</h1>
+    <div class="table-container">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Liste 1</td>
+                    <td>pour - pourquoi - pourtant - combien - comme comment</td>
+                </tr>
+                <tr>
+                    <td>Liste 2</td>
+                    <td>demain - maintenant - soudain - puis - depuis</td>
+                </tr>
+                <tr>
+                    <td>Liste 3</td>
+                    <td>autrefois - parfois - quelquefois - mais - jamais</td>
+                </tr>
+                <tr>
+                    <td>Liste 4</td>
+                    <td>aussi - aussitôt - bien - bientôt - tôt - plutôt</td>
+                </tr>
+                <tr>
+                    <td>Liste 5</td>
+                    <td>lorsque - presque - après - très - près de</td>
+                </tr>
+                <tr>
+                    <td>Liste 6</td>
+                    <td>parce que - dès que - chez - assez - déjà - jusqu'à</td>
+                </tr>
+                <tr>
+                    <td>Liste 7</td>
+                    <td>avec - cela - debout - derrière - hier - ici</td>
+                </tr>
+                <tr>
+                    <td>Liste 8</td>
+                    <td>loin - même - mieux - personne - un peu de - peut-être</td>
+                </tr>
+                <tr>
+                    <td>Liste 9</td>
+                    <td>beaucoup - tout à coup - trop - d'abord - tard quand</td>
+                </tr>
+                <tr>
+                    <td>Liste 10</td>
+                    <td>dans - dehors - dessous - dessus - sous - vers</td>
+                </tr>
+                <tr>
+                    <td>Liste 11</td>
+                    <td>ailleurs - alors - longtemps - moins - sans - toujours</td>
+                </tr>
+                <tr>
+                    <td>Liste 12</td>
+                    <td>avant - autant - devant - pendant</td>
+                </tr>
+                <tr>
+                    <td>Liste 13</td>
+                    <td>souvent - vraiment - tellement - seulement</td>
+                </tr>
+                <tr>
+                    <td>Liste 14</td>
+                    <td>sur - surtout - plus - plusieurs</td>
+                </tr>
+                <tr>
+                    <td>Liste 15</td>
+                    <td>autour - aujourd'hui - encore - enfin - ensuite</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="return-button" onclick="returnToMenu()">Retour au Menu</button>
+    <script>
+        // JavaScript intégré
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight a row when hovered
+            const tableRows = document.querySelectorAll('.table-container table tbody tr');
+
+            tableRows.forEach(row => {
+                row.addEventListener('mouseover', function() {
+                    row.style.backgroundColor = '#e2e2e2';
+                });
+
+                row.addEventListener('mouseout', function() {
+                    row.style.backgroundColor = '';
+                });
+            });
+
+            // Log the clicked word list to the console
+            tableRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const words = row.cells[1].innerText;
+                    console.log(`You clicked on: ${words}`);
+                });
+            });
+        });
+
+        function returnToMenu() {
+            window.location.href = 'menu.html';
+        }
+    </script>
+</body>
+</html>
