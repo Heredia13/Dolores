@@ -4,7 +4,7 @@
 
 **1. Acceptation des Conditions**
 
-En utilisant le code fourni par Heredia13 (ci-après dénommé "le Code"), vous acceptez d'être lié par les présentes Conditions d'Utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le Code.
+En utilisant le code fourni par Heredia13 (ci-après dénommé "Devoir de Dolorés), vous acceptez d'être lié par les présentes Conditions d'Utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le Code.
 
 **2. Licence d'Utilisation**
 
